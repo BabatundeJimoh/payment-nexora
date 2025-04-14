@@ -30,129 +30,108 @@
 />
 <link rel="stylesheet" href="styles.css" />
 <style>
-  /* Apply Poppins font to the entire body */
   body {
-    font-family: 'Poppins', sans-serif;
-    background-color: white;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+}
 
-    
-  }
-  .responsive-img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    background-color: #f8f9fa; /* Light background to fill space */
-  }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  @media (max-width: 767.98px) {
-    .responsive-img {
-      height: auto;
-    }
-  }
- 
-  .row {
-    display: flex; /* Enable flexbox for the row */
-    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
-  }
+.col-6 {
+  display: flex;
+}
 
-  .col-6 {
-    display: flex; /* Enable flexbox for the columns */
-  }
+.responsive-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 
-  .responsive-img {
-    object-fit: cover; /* Ensure the image covers the entire container */
-    width: 100%; /* Make the image take the full width of its container */
-    height: 100%; /* Make the image try to take the full height of its container */
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+}
 
-  .container {
-    display: flex; /* Enable flexbox for the container */
-    flex-direction: column; /* Stack rows vertically */
-  }
+.row {
+  flex: 1;
+}
 
-  .row {
-    flex: 1; /* Make each row take equal available vertical space */
-  }
+.col-6 {
+  flex: 1;
+  max-height: 250px;
+}
 
-  .col-6 {
-    flex: 1; /* Make each column within the row take equal available horizontal space */
-    max-height: 250px; /* Set a maximum height for each image container (adjust as needed) */
-  }
-  
-  .web {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgba(176,3,51,1) 73%, rgba(255,205,41,1) 100%);
-    color: white;
-    margin: 0;
-    overflow-x: hidden;
-  }
 
+
+.web {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgba(176,3,51,1) 73%, rgba(255,205,41,1) 100%);
+  color: white;
+  margin: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.col {
+  flex: 1 1 100%;
+  padding: 2px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.flip-container {
+  perspective: 1000px;
+  width: 100%;
+  height: 70px; /* Reduced height */
+  max-width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s; /* Smooth flip transition */
+}
+
+.flip-container.flipped .flipper {
+  transform: rotateY(180deg); /* Rotate to reveal the back side */
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide the back when it's facing away */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;  /* Adjusted for better readability */
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: white;
+}
+
+.back {
+  transform: rotateY(180deg); /* Position the back side behind the front */
+}
+
+@media (min-width: 768px) {
   .col {
-    flex: 1 1 100%;
-    padding: 2px;
-    box-sizing: border-box;
-    text-align: center;
+    flex: 1 1 50%;  /* Ensure it's split equally on tablet and larger screens */
   }
+}
 
-  .left-section h2 {
-    margin: 10px 0;
-    font-size: 2rem;
-  }
-
-  .flip-container {
-    perspective: 1000px;
-    max-width: 100%;
-    margin: 0 auto;
-  
-  }
-
-  .flipper {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-  }
-
-  .flip-container.flipped .flipper {
-    transform: rotateY(180deg);
-  }
-
-  .front, .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    padding: 0 10px;
-    /* box-sizing: border-box;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1); */
-  }
-
-  .back {
-    transform: rotateY(180deg);
-  }
-
-  /* Tablet */
-  @media (min-width: 768px) {
-    .col {
-      flex: 1 1 50%;
-    }
-  }
-
-  /* Remove unwanted horizontal scroll */
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
 </style>
 
 
@@ -164,70 +143,61 @@
  
 
   <main>
-    <nav class="navbar navbar-expand-lg" style="height: 70px;">
-      <div class="container-fluid d-flex justify-content-between align-items-center position-relative">
+  <!-- Consistent Navbar for all screen sizes -->
+<nav class="navbar" style="height: auto;">
+  <div class="container-fluid d-flex justify-content-between align-items-center position-relative" style="min-height: 50px;">
     
-        <!-- Logo (Left) -->
-        <p class="navbar-brand d-flex align-items-center" style="height: 39px;margin-top: 16px;padding: 12px;">
-          <img src="./images/logo.jpg" alt="Logo" style="height: 35px; width: auto;">
-        </p>
+    <!-- Logo (Left) -->
+    <a class="navbar-brand d-flex align-items-center mb-0" href="#" style="padding: 0;">
+      <img src="./images/logo.jpg" alt="Logo" style="height: 35px; width: auto;">
+    </a>
+
+    <!-- Centered NEXORA text (Always visible and centered) -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center">
+      <a class="navbar-brand m-0" href="#" style="font-weight: bold; font-size: 1.2rem;">NEXORA</a>
+    </div>
+
+    <!-- Home Icon (Right) -->
+    <div class="d-flex align-items-center mb-0">
+      <a href="https://nexoragh.com/" class="nav-link p-0">
+        <span style="display: inline-block; padding: 5px 8px; border-radius: 7px;
+                     background: linear-gradient(90deg, #59014e 38%, #b00333 100%);
+                     color: white;">
+          <i class="bi bi-house-fill" style="font-size: 1.3rem;"></i>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
     
-        <!-- NEXORA Text (Centered - optional) -->
-        <div class="position-absolute top-50 start-50 translate-middle">
-          <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 1.2rem;">NEXORA</a>
-        </div>
-    
-        <!-- Home Icon (Right) -->
-        <div class="d-flex align-items-center ms-auto">
-          <a href="https://nexoragh.com/" class="nav-link">
-            <span style="display: inline-block; padding: 5px; border-radius: 7px; padding-left: 8px; padding-right: 8px;
-                         background: linear-gradient(90deg, #59014e 38%, #b00333 100%);
-                         color: white;">
-              <i class="bi bi-house-fill" style="font-size: 1.3rem;"></i>
-            </span>
-          </a>
-        </div>
-    
-      </div>
-    </nav>
-    
-    
-    
-    <div class="row web" style="background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgba(176,3,51,1) 73%, rgba(255,205,41,1) 100%);color: white;">
-      <!-- Left Column -->
-      <div class="col left-section text-center">
-       <h2 ><b>WebStarter Plan </b> </h2>
-       <h2><b>Payment </b></h2>
-      </div>
-    
-      <!-- Right Column (Flip Box) -->
-      <div class="col right-section">
-        <div class="flip-container" id="flipBox">
-          <div class="flipper">
-            <div class="front">
-              <p>Easily Renew Your WebStarter Plan</p>
-            </div>
-            <div class="back">
-              <p>Keep your website live and running with a simple, hassle-free payment.</p>
-            </div>
+
+<!-- Web Banner Section -->
+<div class="container-fluid web py-3">
+  <div class="row w-100">
+    <!-- Left Column -->
+    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center text-center mb-3 mb-md-0">
+      <h3><b>WebStarter Plan Payment</b></h3>
+    </div>
+
+    <!-- Right Column (Flip Box) -->
+    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+      <div class="flip-container" id="flipBox">
+        <div class="flipper">
+          <div class="front">
+            <p>Easily Renew Your WebStarter Plan</p>
+          </div>
+          <div class="back">
+            <p>Keep your website live and running with a simple, hassle-free payment.</p>
           </div>
         </div>
       </div>
     </div>
-    
+  </div>
+</div>
 
 
-    <!-- <div class="flip-container" id="flipBox">
-      <div class="flipper">
-        <div class="front">
-          <p>Easily Renew Your WebStarter Plan</p>
-        </div>
-        <div class="back">
-          <p>Keep your website live and running with a simple, hassle-free payment.</p>
-        </div>
-      </div>
-    </div>
-     -->
   
   <section class="py-4" style="margin-top: 0px;">
     <div class="container">
@@ -251,7 +221,7 @@
           </div>
           <div style="margin-top: 30px; text-align: center;">
             <p>💳 Amount: <b> Ghc220 (Approx.$12.99) </b> per month</p>
-            <button style="   background: linear-gradient(90deg, #59014e 38%, #b00333 100%); color: white; border-radius: 25px; padding: 12px; border: 10px;" type="submit">Pay Now</button>
+            <button style="   background: linear-gradient(90deg, #59014e 38%, #b00333 100%); color: white; border-radius: 25px; padding: 12px; border: 10px;margin-bottom: 20px;" type="submit">Pay Now</button>
           </div>
         </div>
   
@@ -259,18 +229,18 @@
           <div class="container">
             <div class="row g-0">
               <div class="col-6 col-sm-6 p-0">
-                <img src="./images/mtn.jpg" alt="Image 1" class="img-fluid responsive-img" style="border-top-left-radius: 10px; height: auto;">
+                <img src="./images/mtn.jpg" alt="Image 1" class="img-fluid responsive-img" style="border-top-left-radius: 10px; height: 200px;">
               </div>
               <div class="col-6 col-sm-6 p-0">
-                <img src="./images/airtiltigo.jpg" alt="Image 3" class="img-fluid responsive-img" style="border-top-right-radius: 10px; height: auto;">
+                <img src="./images/airtiltigo.jpg" alt="Image 3" class="img-fluid responsive-img" style="border-top-right-radius: 10px; height: 200px;">
               </div>
             </div>
             <div class="row g-0">
               <div class="col-6 col-sm-6 p-0">
-                <img src="./images/telecel.jpg" alt="Image 2" class="img-fluid responsive-img" style="height: auto; border-bottom-left-radius: 10px;">
+                <img src="./images/telecel.jpg" alt="Image 2" class="img-fluid responsive-img" style="height: 200px; border-bottom-left-radius: 10px;">
               </div>
               <div class="col-6 col-sm-6 p-0">
-                <img src="./images/visa.jpg" alt="Image 4" class="img-fluid responsive-img" style="border-bottom-right-radius: 10px; height: auto;">
+                <img src="./images/visa.jpg" alt="Image 4" class="img-fluid responsive-img" style="border-bottom-right-radius: 10px; height: 200px;">
               </div>
             </div>
           </div>
@@ -342,11 +312,12 @@
    
   </main>  
   <script>
-    const flipBox = document.getElementById("flipBox");
-  
-    setInterval(() => {
-      flipBox.classList.toggle("flipped");
-    }, 5000);
+   const flipBox = document.getElementById("flipBox");
+
+setInterval(() => {
+  flipBox.classList.toggle("flipped");
+}, 5000);  // Flips every 5 seconds
+
   </script>
 </body>
 </html>
