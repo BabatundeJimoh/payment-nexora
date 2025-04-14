@@ -79,21 +79,40 @@
     max-height: 250px; /* Set a maximum height for each image container (adjust as needed) */
   }
   
- 
-  .flip-container {
-    perspective: 1000px;
-    text-align: center;
-    padding: 20px;
+  .web {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgba(176,3,51,1) 73%, rgba(255,205,41,1) 100%);
     color: white;
-    overflow: hidden; /* Ensure container doesn't allow overflow */
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .col {
+    flex: 1 1 100%;
+    padding: 2px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .left-section h2 {
+    margin: 10px 0;
+    font-size: 2rem;
+  }
+
+  .flip-container {
+    perspective: 1000px;
     max-width: 100%;
+    margin: 0 auto;
+  
   }
 
   .flipper {
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 60px;
     transform-style: preserve-3d;
     transition: transform 1s;
   }
@@ -110,13 +129,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 1rem;
     padding: 0 10px;
-    box-sizing: border-box;
+    /* box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1); */
   }
 
   .back {
     transform: rotateY(180deg);
+  }
+
+  /* Tablet */
+  @media (min-width: 768px) {
+    .col {
+      flex: 1 1 50%;
+    }
+  }
+
+  /* Remove unwanted horizontal scroll */
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 </style>
 
@@ -156,28 +191,33 @@
       </div>
     </nav>
     
-
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000" data-bs-wrap="true">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <!-- Responsive Image -->
-          <img src="./images/payment.jpg" class="d-block w-100 img-fluid" alt="First slide"
-            style="height: 400px; object-fit: cover; filter: brightness(50%);">
     
-          <!-- Responsive Caption -->
-          <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center"
-            style="top: 0; bottom: 0;">
-            <h1 class="text-white fw-bold display-1 display-md-1 display-lg-1">WebStarter Plan Payment</h1>
-
+    
+    <div class="row web" style="background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgba(176,3,51,1) 73%, rgba(255,205,41,1) 100%);color: white;">
+      <!-- Left Column -->
+      <div class="col left-section text-center">
+       <h2 ><b>WebStarter Plan </b> </h2>
+       <h2><b>Payment </b></h2>
+      </div>
+    
+      <!-- Right Column (Flip Box) -->
+      <div class="col right-section">
+        <div class="flip-container" id="flipBox">
+          <div class="flipper">
+            <div class="front">
+              <p>Easily Renew Your WebStarter Plan</p>
+            </div>
+            <div class="back">
+              <p>Keep your website live and running with a simple, hassle-free payment.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
-    
 
-    
-    <div class="flip-container" id="flipBox">
+
+    <!-- <div class="flip-container" id="flipBox">
       <div class="flipper">
         <div class="front">
           <p>Easily Renew Your WebStarter Plan</p>
@@ -187,14 +227,14 @@
         </div>
       </div>
     </div>
-    
+     -->
   
-  <section class="py-5" style="margin-top: 50px;">
+  <section class="py-4" style="margin-top: 0px;">
     <div class="container">
       <div class="row align-items-center">
         
         <!-- Left Column -->
-        <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+        <div class="col-md-6 text-center text-md-start ">
           <h3 class="text-center"><b>Enter Your Website Address to Proceed</b></h3>
           <!-- Centered Form Container -->
           <div class="d-flex justify-content-center mt-4">
