@@ -1,323 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payment Nexora</title>
-  
-   
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Nexora</title>
 
-    <!-- Linking Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <!-- Font Awesome & Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-    <!-- Linking Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
-<link rel="stylesheet" href="styles.css" />
-<style>
-  body {
-  font-family: 'Poppins', sans-serif;
-  background-color: white;
-}
+  <!-- Custom Styles -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 175%;
+    }
 
-.col-6 {
-  display: flex;
-}
+    .responsive-img {
+      object-fit: cover;
+      width: 100%;
+      height: 130px;
+    }
 
-.responsive-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
+    .web {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgb(176, 3, 51) 73%, rgb(255, 205, 41) 100%);
+      color: white;
+      overflow-x: hidden;
+    }
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
+    @media (max-width: 767.98px) {
+      .image-grid-wrapper {
+        margin-top: 80px !important;
+      }
+    }
 
-.row {
-  flex: 1;
-}
+    .fade-container {
+      position: relative;
+      height: 60px;
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-.col-6 {
-  flex: 1;
-  max-height: 250px;
-}
+    .fade-text {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      font-size: 1.1rem;
+      color: white;
+    }
 
+    .fade-text.show {
+      opacity: 1;
+    }
 
+    @media (min-width: 768px) {
+      .responsive-img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
 
-.web {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(90deg, rgb(89, 1, 78) 38%, rgba(176,3,51,1) 73%, rgba(255,205,41,1) 100%);
-  color: white;
-  margin: 0;
-  overflow-x: hidden;
-  height: 100%;
-}
-
-.col {
-  flex: 1 1 100%;
-  padding: 2px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.flip-container {
-  perspective: 1000px;
-  width: 100%;
-  height: 70px; /* Reduced height */
-  max-width: 400px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.flipper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1s; /* Smooth flip transition */
-}
-
-.flip-container.flipped .flipper {
-  transform: rotateY(180deg); /* Rotate to reveal the back side */
-}
-
-.front, .back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden; /* Hide the back when it's facing away */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;  /* Adjusted for better readability */
-  padding: 0 10px;
-  box-sizing: border-box;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  color: white;
-}
-
-.back {
-  transform: rotateY(180deg); /* Position the back side behind the front */
-}
-
-@media (min-width: 768px) {
-  .col {
-    flex: 1 1 50%;  /* Ensure it's split equally on tablet and larger screens */
-  }
-}
-
-</style>
-
-
-  </head>
-  
-  
 <body>
-
- 
-
   <main>
-  <!-- Consistent Navbar for all screen sizes -->
-<nav class="navbar" style="height: auto;">
-  <div class="container-fluid d-flex justify-content-between align-items-center position-relative" style="min-height: 50px;">
-    
-    <!-- Logo (Left) -->
-    <a class="navbar-brand d-flex align-items-center mb-0" href="#" style="padding: 0;">
-      <img src="./images/logo.jpg" alt="Logo" style="height: 35px; width: auto;">
-    </a>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container-fluid d-flex justify-content-between align-items-center position-relative">
+        <a class="navbar-brand d-flex align-items-center mb-0" href="#">
+          <img src="./images/logo.jpg" alt="Logo" style="height: 35px;">
+        </a>
+        <div class="position-absolute top-50 start-50 translate-middle text-center">
+          <a class="navbar-brand m-0 fw-bold fs-5" href="#">NEXORA</a>
+        </div>
+        <div class="d-flex align-items-center mb-0">
+          <a href="https://nexoragh.com/" class="nav-link p-0">
+            <span style="padding: 5px 8px; border-radius: 7px;
+                         background: linear-gradient(90deg, #59014e 38%, #b00333 100%);
+                         color: white;">
+              <i class="bi bi-house-fill fs-5"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </nav>
 
-    <!-- Centered NEXORA text (Always visible and centered) -->
-    <div class="position-absolute top-50 start-50 translate-middle text-center">
-      <a class="navbar-brand m-0" href="#" style="font-weight: bold; font-size: 1.2rem;">NEXORA</a>
-    </div>
-
-    <!-- Home Icon (Right) -->
-    <div class="d-flex align-items-center mb-0">
-      <a href="https://nexoragh.com/" class="nav-link p-0">
-        <span style="display: inline-block; padding: 5px 8px; border-radius: 7px;
-                     background: linear-gradient(90deg, #59014e 38%, #b00333 100%);
-                     color: white;">
-          <i class="bi bi-house-fill" style="font-size: 1.3rem;"></i>
-        </span>
-      </a>
-    </div>
-
-  </div>
-</nav>
-
-    
-
-<!-- Web Banner Section -->
-<div class="container-fluid web py-3">
-  <div class="row w-100">
-    <!-- Left Column -->
-    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center text-center mb-3 mb-md-0">
-      <h3><b>WebStarter Plan Payment</b></h3>
-    </div>
-
-    <!-- Right Column (Flip Box) -->
-    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-      <div class="flip-container" id="flipBox">
-        <div class="flipper">
-          <div class="front">
-            <p>Easily Renew Your WebStarter Plan</p>
-          </div>
-          <div class="back">
-            <p>Keep your website live and running with a simple, hassle-free payment.</p>
+    <!-- Web Banner Section -->
+    <div class="container-fluid web py-3">
+      <div class="row w-100">
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center text-center mb-3 mb-md-0">
+          <h3><b>WebStarter Plan Payment</b></h3>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+          <div class="fade-container">
+            <span class="fade-text show">Easily Renew Your WebStarter Plan</span>
+            <span class="fade-text">Keep your website live and running with a simple, hassle-free payment.</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-
-  
-  <section class="py-4" style="margin-top: 0px;">
-    <div class="container">
-      <div class="row align-items-center">
-        
-        <!-- Left Column -->
-        <div class="col-md-6 text-center text-md-start ">
-          <h3 class="text-center"><b>Enter Your Website Address to Proceed</b></h3>
-          <!-- Centered Form Container -->
-          <div class="d-flex justify-content-center mt-4">
-            <form class="d-flex" role="search" style="padding: 10px; border-radius: 8px;">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="(www.yourbusiness.com)"
-                aria-label="Search"
-                style="width: 300px;"
-              />
-              <button style="   background: linear-gradient(90deg, #59014e 38%, #b00333 100%); color: white; border-radius: 25px; padding: 12px; border: 10px;" type="submit">Submit</button>
-            </form>
-          </div>
-          <div style="margin-top: 30px; text-align: center;">
-            <p>💳 Amount: <b> Ghc220 (Approx.$12.99) </b> per month</p>
-            <button style="   background: linear-gradient(90deg, #59014e 38%, #b00333 100%); color: white; border-radius: 25px; padding: 12px; border: 10px;margin-bottom: 20px;" type="submit">Pay Now</button>
-          </div>
-        </div>
-  
-        <div class="col-12 col-md-6 text-center" style="max-height: 500px;">
-          <div class="container">
-            <div class="row g-0">
-              <div class="col-6 col-sm-6 p-0">
-                <img src="./images/mtn.jpg" alt="Image 1" class="img-fluid responsive-img" style="border-top-left-radius: 10px; height: 200px;">
-              </div>
-              <div class="col-6 col-sm-6 p-0">
-                <img src="./images/airtiltigo.jpg" alt="Image 3" class="img-fluid responsive-img" style="border-top-right-radius: 10px; height: 200px;">
-              </div>
+    <!-- Form Section -->
+    <section class="py-4">
+      <div class="container" style="margin-top: 80px;">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6 text-center text-md-start">
+            <h3 class="text-center"><b>Enter Your Website Address to Proceed</b></h3>
+            <div class="d-flex justify-content-center mt-4">
+              <form class="d-flex" style="padding: 10px; border-radius: 8px;">
+                <input class="form-control me-2" type="search" placeholder="(www.yourbusiness.com)" style="width: 100%; max-width: 800px; height: 55px; font-size: 1.1rem;" />
+                <button class="btn" style="background: linear-gradient(90deg, #59014e 38%, #b00333 100%); color: white; border-radius: 25px; padding: 14px 24px; font-size: 1.1rem;">
+                  Submit
+                </button>
+              </form>
             </div>
-            <div class="row g-0">
-              <div class="col-6 col-sm-6 p-0">
-                <img src="./images/telecel.jpg" alt="Image 2" class="img-fluid responsive-img" style="height: 200px; border-bottom-left-radius: 10px;">
+            <div class="mt-4 text-center">
+              <p>💳 Amount: <b> Ghc220 (Approx.$12.99) </b> per month</p>
+              <button class="btn" style="background: linear-gradient(90deg, #59014e 38%, #b00333 100%); color: white; border-radius: 25px; padding: 14px 30px; font-size: 1.1rem;">
+                Pay Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Image Grid -->
+          <div class="col-12 col-md-6 text-center mt-md-0 image-grid-wrapper">
+            <div class="container">
+              <div class="row g-0">
+                <div class="col-6 p-0">
+                  <img src="./images/mtn.jpg" alt="MTN" class="img-fluid responsive-img" style="border-top-left-radius: 10px;">
+                </div>
+                <div class="col-6 p-0">
+                  <img src="./images/airtiltigo.jpg" alt="AirtelTigo" class="img-fluid responsive-img" style="border-top-right-radius: 10px;">
+                </div>
               </div>
-              <div class="col-6 col-sm-6 p-0">
-                <img src="./images/visa.jpg" alt="Image 4" class="img-fluid responsive-img" style="border-bottom-right-radius: 10px; height: 200px;">
+              <div class="row g-0">
+                <div class="col-6 p-0">
+                  <img src="./images/telecel.jpg" alt="Telecel" class="img-fluid responsive-img" style="border-bottom-left-radius: 10px;">
+                </div>
+                <div class="col-6 p-0">
+                  <img src="./images/visa-done.jpg" alt="Visa" class="img-fluid responsive-img" style="border-bottom-right-radius: 10px;">
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
-        
-    </div>
-  </section>
 
-  
-  <div class="container text-center" style="margin-top: 70px;" >
-    <div class="row p-4 text-white" style="background: linear-gradient(135deg, rgba(89,1,78,1) 18%, rgba(176,3,51,1) 51%); border-radius: 20px; ">
-      <h2 style="margin-top: 30px;"><b>Important Reminder</b></h2>
-      <p style="margin-top: 20px;margin-bottom: 20px;">
-        <b>⚠ Non-renewal may result in your website going offline.</b>
-        To avoid disruptions, make sure to renew on time.
-        A reactivation fee of <b>$25</b> applies if your website is suspended due to late payment.
-      </p>
-    </div>
-  </div>
+        <!-- Reminder Section -->
+        <div class="container text-center" style="margin-top: 140px;">
+          <div class="row p-4 text-white" style="background: linear-gradient(135deg, rgba(89,1,78,1) 18%, rgba(176,3,51,1) 51%); border-radius: 20px;">
+            <h2 class="mt-3"><b>Important Reminder</b></h2>
+            <p class="mt-3 mb-3">
+              <b>⚠ Non-renewal may result in your website going offline.</b>
+              To avoid disruptions, make sure to renew on time.
+              A reactivation fee of <b>$25</b> applies if your website is suspended due to late payment.
+            </p>
+          </div>
+        </div>
 
+        <!-- Confirmation Section -->
+        <div class="container-fluid" style="margin-top: 80px;">
+          <h3 class="text-center py-4"><b>Secure & Instant Confirmation</b></h3>
+          <div class="row justify-content-center g-4">
+            <div class="col-md-4">
+              <div class="card text-center p-4" style="background-color: #1AACE8; border-radius: 12px;">
+                <div class="card-body">
+                  <i class="bi bi-file-earmark-text fs-1 mb-3"></i>
+                  <p class="card-text">✔ No manual invoicing – just pay and go!</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card text-center p-4" style="background-color: #59014e; color: white; border-radius: 12px;">
+                <div class="card-body">
+                  <i class="bi bi-shield-lock fs-1 mb-3"></i>
+                  <p class="card-text">✔ Secure payment processing</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card text-center p-4" style="background-color:#FFCD29; color: white; border-radius: 12px;">
+                <div class="card-body">
+                  <i class="bi bi-envelope-check fs-1 mb-3"></i>
+                  <p class="card-text">✔ Instant email confirmation after successful payment</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <div class="container-fluid" style="margin-top: 70px;">
-    <h3 class="text-center" style="padding-top: 50px;padding-bottom: 30px;"><b>Secure & Instant Confirmation</b></h3>
-    <div class="row justify-content-center g-4">
-      
-      <!-- Card 1 -->
-      <div class="col-md-4">
-        <div class="card text-center p-3 shadow-sm" style="border-radius: 20px;background-color: #1AACE8;">
-          <div class="card-body">
-            <i class="bi bi-file-earmark-text fs-1 mb-3" ></i>
-            <p class="card-text" >✔ No manual invoicing – <br> just pay and go!</p>
+          <!-- Help Section -->
+          <div class="row w-100 text-center text-white" style="background-color: black; padding: 16px 10px; margin-top: 120px;">
+            <p style="margin: 0; font-size: 1rem;">
+              🔹 Need Help? Contact our support team at 
+              <a href="mailto:support@nexoragh.com" style="color: white; text-decoration: underline;">support@nexoragh.com</a>
+            </p>
           </div>
         </div>
       </div>
-  
-      <!-- Card 2 -->
-      <div class="col-md-4">
-        <div class="card text-center p-3 shadow-sm" style="border-radius: 20px;background-color: #59014e">
-          <div class="card-body">
-            <i class="bi bi-shield-lock fs-1  mb-3" style="color: white;"></i>
-            <p class="card-text" style="color: white;">✔ Secure payment processing</p>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card 3 -->
-      <div class="col-md-4">
-        <div class="card text-center p-3 shadow-sm" style="border-radius: 20px; background-color: #FFCD29; ">
-          <div class="card-body">
-            <i class="bi bi-envelope-check fs-1  mb-3" style="color: rgb(0, 0, 0);"></i>
-            <p class="card-text" style="color: rgb(0, 0, 0);">✔ Instant email confirmation after successful payment</p>
-          </div>
-        </div>
-      </div>
-  
-    </div>
-  
-    <!-- Help Section -->
-    <div class="text-center" style="background-color: black;color: white;padding-top: 30px;padding-bottom: 30px;margin-top: 120px;">
-      <p>🔹 Need Help? Contact our support team at 
-        <a href="mailto:support@nexoragh.com">support@nexoragh.com</a>
-      </p>
-    </div>
-  </div>
-  
-  
-    
-   
-  </main>  
+    </section>
+  </main>
+
+  <!-- Fade Animation Script -->
   <script>
-   const flipBox = document.getElementById("flipBox");
+    document.addEventListener("DOMContentLoaded", function () {
+      const texts = document.querySelectorAll(".fade-text");
+      let index = 0;
 
-setInterval(() => {
-  flipBox.classList.toggle("flipped");
-}, 5000);  // Flips every 5 seconds
-
+      setInterval(() => {
+        texts[index].classList.remove("show");
+        index = (index + 1) % texts.length;
+        texts[index].classList.add("show");
+      }, 4000);
+    });
   </script>
 </body>
 </html>
